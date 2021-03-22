@@ -1,0 +1,34 @@
+react-native run-android
+
+react-native link
+react-devtools
+// Axios use localhost server ip and turn off firewall only for the testing
+// While using server  in localhost
+// bug on bluetooth node_modules\react-native-bluetooth-serial\android\src\main\java\com\rusel\RCTBluetoothSerial\RCTBluetoothSerialPackage.java:23: error: method does not override or implement a method from a supertype
+comentar //@Override
+
+//debug apk
+react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+cd android
+./gradlew assembleDebug
+There! you'll find the apk file in the following path:
+yourProject/android/app/build/outputs/apk/debug/app-debug.apk
+
+//realese apk
+Generate key
+
+
+cd C:\Program Files\Java\jdk1.6.0_26\bin\ as admin
+
+keytool.exe -genkey -v -keystore your_key_name.keystore -alias your_key_alias -keyalg RSA -keysize 2048 -validity 10000
+
+you need to copy the file your_key_name.keystore and paste it under the android/app
+
+mv my-release-key.keystore /android/app
+
+Step 3. Release APK Generation
+
+cd android
+gradlew assembleRelease
+For Linux and Mac OSX:
+./gradlew assembleRelease

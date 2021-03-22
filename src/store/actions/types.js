@@ -1,0 +1,7 @@
+// SESSION
+export const SET_AUTH_USER = 'SET_AUTH_USER';
+export const SET_SESSION_ERROR = 'SET_SESSION_ERROR';
+export const CLEARSTORE = 'CLEARSTORE';
+export const SET_INIT_SESSION = 'SET_INIT_SESSION';
+export const ADD_TOAST = "ADD_TOAST";
+export const REMOVE_TOAST = "REMOVE_TOAST";
