@@ -2,11 +2,15 @@ react-native run-android
 
 react-native link
 react-devtools
+
+
 // Axios use localhost server ip and turn off firewall only for the testing
 // While using server  in localhost
 // bug on bluetooth node_modules\react-native-bluetooth-serial\android\src\main\java\com\rusel\RCTBluetoothSerial\RCTBluetoothSerialPackage.java:23: error: method does not override or implement a method from a supertype
 comentar //@Override
 
+// cambiar nombre de app en la ubicacion  solo para android
+android/app/src/main/res/values/strings.xml
 //debug apk
 react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
 cd android
@@ -32,3 +36,67 @@ cd android
 gradlew assembleRelease
 For Linux and Mac OSX:
 ./gradlew assembleRelease
+
+
+TENSOR FLOW TESTS
+    la version 3.0.0 marca un error con el modulo crypto   y no funciona
+    la version 3.3.0 tiene algunas funciones  pero para muchas cosas  marca el siguiente error
+
+             // SIMPLE MODEL TRAINING
+            //define el modelo de regresion lineal
+            linearModel = tf.sequential();
+            linearModel.add(tf.layers.dense({ units: 1, inputShape: [1] }));
+            // //prepara el modelo para entrenar,  con su perdida  y su optimizador
+            linearModel.compile({ loss: 'meanSquaredError', optimizer: 'sgd' });
+            
+
+            // // algunos tensores
+            const xs = tf.tensor1d([3.2, 4.4, 5.5]);
+            //xs.print()
+            const ys = tf.tensor1d([1.6, 2.7, 3.5]);
+            xs.print()
+            ys.print()
+            await linearModel.fit(xs,ys)
+            console.log('model trained')
+
+
+            // SIMPLE TRY
+            // [1,2,3,4,5,6,7].forEach(num => {
+            //     linearPredict(num)
+            // })
+            
+            // const b = tf.tensor1d([2, 5, 2]);
+            // const a = tf.tensor([[2, 3], [4, 5]])
+            // const b = tf.tensor([[1, 2], [8, 0]])
+            //const c = tf.tensor1d([1, 2, 3,]);
+            // const a = tf.tensor2d([1, 2], [1, 2]);
+            // const b = tf.tensor2d([1, 2, 3, 4], [2, 2]);
+
+            // tf.add(a, b).print();
+            // tf.sub(a, b).print();           
+            // tf.mul(a, b).print();            
+            // tf.maximum(a, b).print();
+            // tf.minimum(a, b).print();
+            // tf.abs(a).print()
+
+
+            // error [TypeError: undefined is not an object (evaluating 'a.substr')]
+            // tf.div(a, b).print();
+            // a.div(a, b).print();
+            // tf.addN([a, b, c]).print();
+            // a.divNoNan(b).print();
+            // tf.floorDiv(a, b).print();
+            // a.matMul(b).print();
+            // tf.transpose(b).print();
+            //tf.asin(a).print()
+            //tf.asin(a).print()
+            //tf.acos(a).print()
+            // tf.mod(a, b).print();
+            // tf.pow(a, b).print();
+            // tf.squaredDifference(a, b).print(); 
+
+             const linearPredict = (val) => {
+      const output = linearModel.predict(tf.tensor2d([val],[1,1]))
+      prediction = Array.from(output.dataSync())[0]
+      console.log(output, prediction)
+    }

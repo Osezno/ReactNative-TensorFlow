@@ -5,6 +5,8 @@ import * as ACTIONS from '../store/actions';
 import SignInForm from '../components/Forms/SignInForm.js';
 import { connect } from 'react-redux';
 import { useTheme } from 'react-native-paper';
+import * as tf from '@tensorflow/tfjs';
+import '@tensorflow/tfjs-react-native';
 
 const LoginView = (props) => {
     const { addAuthUser, addToast, navigation, route, theme } = props

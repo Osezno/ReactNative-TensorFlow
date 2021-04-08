@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import HomeView from './views/HomeView';
 import LoginView from './views/LoginView';
+import TensorView from './views/TensorView';
 //redux
 import { connect } from 'react-redux';
 import * as ACTIONS from './store/actions';
@@ -46,12 +47,12 @@ const MainView = (props) => {
     return (
         <>
             <NavigationContainer>
-                <Stack.Navigator>
+                <Stack.Navigator  initialRouteName="Home">
                     <Stack.Screen
-                        name="@Osezno"
-                        component={HomeView}
+                        name="tensor"
+                        component={TensorView}
                         options={{
-                            title:'Osezno Room Control',
+                            title: 'Tensor Test',
                             headerStyle: {
                                 backgroundColor: '#000',
                             },
@@ -61,7 +62,22 @@ const MainView = (props) => {
                             }
                         }}
                     />
-                    <Stack.Screen name="Details" component={LoginView} />
+                    {/* <Stack.Screen
+                        name="@Osezno"
+                        component={HomeView}
+                        options={{
+                            title: 'Osezno Room Control',
+                            headerStyle: {
+                                backgroundColor: '#000',
+                            },
+                            headerTintColor: '#fff',
+                            headerTitleStyle: {
+                                fontWeight: 'bold',
+                            }
+                        }}
+                    />
+                    <Stack.Screen name="login" component={LoginView} /> */}
+
                 </Stack.Navigator>
             </NavigationContainer>
             <Snackbar
